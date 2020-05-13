@@ -45,5 +45,8 @@ function my_embed_javascript_file_content_handles( $handles ) {
 
 == Changelog ==
 
+= 1.0.1 =
+* Small stabilization fix
+
 = 1.0 =
 * First release

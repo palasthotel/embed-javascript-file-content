@@ -1,15 +1,13 @@
 <?php
-
 /**
  * Plugin Name: Embed JavaScript File Content
  * Description: Boosts performance of critical short JavaScript files by embedding their code instead of linking to files. Script positions and extra scripts are preserved.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Palasthotel <rezeption@palasthotel.de> (Kim Meyer)
  * Author URI: https://palasthotel.de
  */
 
 namespace EmbedJavaScriptFileContent;
-
 use DOMDocument;
 
 // If this file is called directly, abort.
@@ -69,9 +67,11 @@ function replace_src_with_content($src, $content, $html)
     $html_doc = "<!DOCTYPE html><html><head><meta charset='utf-8'><title>_</title></head><body>$html</body></html>";
     $dom = DOMDocument::loadHTML($html_doc);
     $dom_scripts = $dom->getElementsByTagName('script');
+
     if (empty($dom_scripts)) {
-        return '';
+        return $html;
     }
+
     $scripts = [];
     foreach ($dom_scripts as $dom_script) {
         if ($dom_script->getAttribute('src') === $src) {
